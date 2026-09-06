@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Study Corner</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #F3F0E9;
+    color: #30302D;
+    line-height: 1.6;
+}
+header {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+.little-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8B9A87;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+header h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 500;
+    margin: 0;
+    color: #30302D;
+}
+header p {
+    margin-top: 8px;
+    color: #77736B;
+    font-size: 16px;
+}
+main {
+    width: min(950px, 92%);
+    margin: auto;
+    padding-bottom: 60px;
+}
+.section-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 0 0 18px;
+}
+.section-subtitle {
+    color: #77736B;
+    font-size: 14px;
+    margin-top: -12px;
+    margin-bottom: 20px;
+}
+.card {
+    background: #FFFFFF;
+    border: 1px solid #E2DED5;
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 18px rgba(55, 50, 40, 0.05);
+}
+.people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+.person-card {
+    border: 1px solid #E2DED5;
+    border-radius: 15px;
+    padding: 22px;
+    background: #FAF9F6;
+}
+.person-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.person-name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+}
+.goal-number {
+    font-size: 14px;
+    color: #77736B;
+}
+.progress-container {
+    width: 100%;
+    height: 9px;
+    background: #E9E6DE;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px 0 14px;
+}
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #8B9A87;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+.status {
+    font-size: 14px;
+    color: #77736B;
+    margin-bottom: 15px;
+}
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    background: #6F6252;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+button:hover {
+    background: #584D40;
+    transform: translateY(-1px);
+}
+.streak {
+    text-align: center;
+    padding: 30px;
+}
+.streak-icon {
+    font-size: 28px;
+    margin-bottom: 3px;
+}
+.streak-number {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 44px;
+    margin: 0;
+    color: #6F6252;
+}
+.streak-label {
+    color: #77736B;
+    font-size: 14px;
+}
+.history-entry {
+    padding: 15px 0;
+    border-bottom: 1px solid #ECE9E2;
+}
+.history-entry:last-child {
+    border-bottom: none;
+}
+.history-week {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.history-details {
+    color: #77736B;
+    font-size: 14px;
+}
+.history-streak {
+    font-size: 13px;
+    color: #8B9A87;
+    margin-top: 3px;
+}
+.log-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid #ECE9E2;
+}
+.log-entry:last-child {
+    border-bottom: none;
+}
+.log-person {
+    font-weight: 600;
+}
+.log-type {
+    font-size: 13px;
+    color: #77736B;
+}
+.empty-log {
+    color: #99958D;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
+}
+.checkin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+.question {
+    margin-bottom: 18px;
+}
+.question label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+textarea {
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    border: 1px solid #DED9D0;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    background: #FAF9F6;
+    color: #30302D;
+    outline: none;
+}
+textarea:focus {
+    border-color: #8B9A87;
+}
+.save-button {
+    margin-top: 5px;
+}
+.wins {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+.win {
+    background: #F3F0E9;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #E2DED5;
+}
+.win-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.win p {
+    margin: 0;
+    font-size: 13px;
+    color: #625F58;
+}
+.reminder {
+    text-align: center;
+    background: #ECEBE3;
+}
+.reminder p {
+    margin: 0;
+    color: #625F58;
+}
+footer {
+    text-align: center;
+    color: #99958D;
+    font-size: 12px;
+    padding: 15px 20px 40px;
+}
+@media (max-width: 700px) {
+    header {
+        padding-top: 40px;
+    }
+    header h1 {
+        font-size: 34px;
+    }
+    .people,
+    .checkin-grid {
+        grid-template-columns: 1fr;
+    }
+    .wins {
+        grid-template-columns: 1fr;
+    }
+    .card {
+        padding: 21px;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="little-label">OUR SHARED STUDY SPACE</div>
+    <h1>Our Little Study Corner</h1>
+    <p>A little progress every week.</p>
+</header>
+<main>
+<!-- THIS WEEK -->
+<section class="card">
+<h2 class="section-title">This Week</h2>
+<p class="section-subtitle">
+    Your goal is simple: complete at least 2 assignments or 2 chapters.
+</p>
+<div class="people">
+    <!-- Chetlynn -->
+    <div class="person-card">
+        <div class="person-top">
+            <div class="person-name">Chetlynn</div>
+            <div class="goal-number" id="youGoal">0 / 2</div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="youProgress"></div>
+        </div>
+        <div class="status" id="youStatus">
+            You've got this. Start whenever you're ready.
+        </div>
+        <button onclick="addStudy('you')">
+            + Add Accomplishment
+        </button>
+    </div>
+    <!-- HIM -->
+    <div class="person-card">
+        <div class="person-top">
+            <div class="person-name">Ramon</div>
+            <div class="goal-number" id="himGoal">0 / 2</div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="himProgress"></div>
+        </div>
+        <div class="status" id="himStatus">
+            You've got this. Start whenever you're ready.
+        </div>
+        <button onclick="addStudy('him')">
+            + Add Accomplishment
+        </button>
+    </div>
+</div>
+</section>
+<!-- COUPLE STREAK -->
+<section class="card streak">
+<div class="streak-icon">✦</div>
+<h2 class="streak-number" id="streakNumber">0</h2>
+<div class="streak-label">
+    weeks of showing up together
+</div>
+</section>
+<!-- WEEKLY HISTORY -->
+<section class="card">
+<h2 class="section-title">Weekly History</h2>
+<p class="section-subtitle">
+    A little record of the weeks you've completed together.
+</p>
+<div id="historyList">
+    <div class="empty-log">
+        No completed weeks yet. Keep showing up. ✦
+    </div>
+</div>
+<button onclick="startNewWeek()" style="margin-top: 18px;">
+    ↻ Start New Week
+</button>
+</section>
+<!-- STUDY LOG -->
+<section class="card">
+<h2 class="section-title">Study Log</h2>
+<p class="section-subtitle">
+    Keep track of the little things that add up.
+</p>
+<div id="studyLog">
+    <div class="empty-log">
+        Nothing logged yet. Go study! 📚
+    </div>
+</div>
+</section>
+<!-- WEEKLY CHECK-IN -->
+<section class="card">
+<h2 class="section-title">Weekly Check-In</h2>
+<p class="section-subtitle">
+    Take a few minutes to check in with yourself and each other.
+</p>
+<div class="checkin-grid">
+    <div class="question">
+        <label>What did I accomplish this week?</label>
+        <textarea id="accomplished"
+        placeholder="Tell us about your wins..."></textarea>
+    </div>
+    <div class="question">
+        <label>What am I proud of?</label>
+        <textarea id="proud"
+        placeholder="Even the little things count."></textarea>
+    </div>
+    <div class="question">
+        <label>What am I working on next week?</label>
+        <textarea id="nextWeek"
+        placeholder="What's coming up?"></textarea>
+    </div>
+    <div class="question">
+        <label>How can we support each other?</label>
+        <textarea id="support"
+        placeholder="What would help this week?"></textarea>
+    </div>
+    <div class="question">
+        <label>One thing I appreciate about you</label>
+        <textarea id="appreciation"
+        placeholder="Say something nice. 🤎"></textarea>
+    </div>
+</div>
+<button class="save-button" onclick="saveCheckin()">
+    Save Check-In
+</button>
+</section>
+<!-- LITTLE WINS -->
+<section class="card">
+<h2 class="section-title">Little Wins</h2>
+<div class="wins">
+    <div class="win">
+        <div class="win-icon">📖</div>
+        <p>Finished a chapter</p>
+    </div>
+    <div class="win">
+        <div class="win-icon">✏️</div>
+        <p>Finished an assignment</p>
+    </div>
+    <div class="win">
+        <div class="win-icon">☕</div>
+        <p>Showed up even when tired</p>
+    </div>
+</div>
+</section>
+<!-- REMINDER -->
+<section class="card reminder">
+<p>
+    You don't have to be perfect.
+    <strong>You just have to keep showing up.</strong>
+</p>
+</section>
+</main>
+<footer>
+    Built for two people who are trying to grow together. ✦
+</footer>
+<!-- SUPABASE LIBRARY -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+    /* =====================================================
+       SUPABASE CONNECTION
+       ===================================================== */
+    const SUPABASE_URL =
+        "https://pjacgirjlukaxqbzzqmr.supabase.co";
+    const SUPABASE_KEY =
+        "sb_publishable__0KdFRXr1YMKDaD_8Z5zmA_bWDvvYdp";
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+    const COUPLE_ID = "chetlynn-ramon";
+    /* =====================================================
+       LOCAL DATA
+       ===================================================== */
+    let youCount = 0;
+    let himCount = 0;
+    let studyLogs = [];
+    let streak = 0;
+    let history = [];
+    let currentWeekStart = "";
+    /* =====================================================
+       WEEKLY HISTORY
+       ===================================================== */
+    function getCurrentWeekStart() {
+        const today = new Date();
+        const day = today.getDay();
+        const difference =
+            day === 0 ? -6 : 1 - day;
+        const monday =
+            new Date(today);
+        monday.setDate(
+            today.getDate() + difference
+        );
+        monday.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+        return monday
+            .toISOString()
+            .split("T")[0];
+    }
+    function formatWeek(startDate) {
+        const start =
+            new Date(
+                startDate + "T00:00:00"
+            );
+        const end =
+            new Date(start);
+        end.setDate(
+            start.getDate() + 6
+        );
+        const options = {
+            month: "short",
+            day: "numeric"
+        };
+        return (
+            start.toLocaleDateString(
+                undefined,
+                options
+            ) +
+            " – " +
+            end.toLocaleDateString(
+                undefined,
+                options
+            )
+        );
+    }
+    function renderHistory() {
+        const historyList =
+            document.getElementById(
+                "historyList"
+            );
+        if (!historyList) {
+            return;
+        }
+        historyList.innerHTML = "";
+        if (!history.length) {
+            historyList.innerHTML = `
+                <div class="empty-log">
+                    No completed weeks yet. Keep showing up. ✦
+                </div>
+            `;
+            return;
+        }
+        history.forEach(function(item) {
+            const entry =
+                document.createElement("div");
+            entry.className =
+                "history-entry";
+            const bothCompleted =
+                item.youCount >= 2 &&
+                item.himCount >= 2;
+            entry.innerHTML = `
+                <div class="history-week">
+                    ${formatWeek(item.weekStart)}
+                </div>
+                <div class="history-details">
+                    Chetlynn: ${item.youCount} / 2
+                    &nbsp; • &nbsp;
+                    Ramon: ${item.himCount} / 2
+                </div>
+                <div class="history-streak">
+                    ${
+                        bothCompleted
+                        ? "✦ You both reached your goal."
+                        : "A week of showing up still counts. ✦"
+                    }
+                </div>
+            `;
+            historyList.appendChild(entry);
+        });
+    }
+    /* =====================================================
+       UPDATE PERSON
+       ===================================================== */
+    function updatePerson(person, count) {
+        const goal =
+            document.getElementById(
+                person + "Goal"
+            );
+        const progress =
+            document.getElementById(
+                person + "Progress"
+            );
+        const status =
+            document.getElementById(
+                person + "Status"
+            );
+        goal.textContent =
+            count + " / 2";
+        const percentage =
+            Math.min(
+                (count / 2) * 100,
+                100
+            );
+        progress.style.width =
+            percentage + "%";
+        if (count === 0) {
+            status.textContent =
+                "You've got this. Start whenever you're ready.";
+        } else if (count === 1) {
+            status.textContent =
+                "One more and you've hit your weekly goal.";
+        } else if (count === 2) {
+            status.textContent =
+                "Weekly goal reached. Nice work! ✦";
+        } else {
+            status.textContent =
+                "Goal reached — and you're still going. Keep it up!";
+        }
+    }
+    /* =====================================================
+       UPDATE STREAK
+       ===================================================== */
+    function updateStreak() {
+        document.getElementById(
+            "streakNumber"
+        ).textContent = streak;
+    }
+    /* =====================================================
+       ADD STUDY
+       ===================================================== */
+    async function addStudy(person) {
+        if (person === "you") {
+            youCount++;
+            updatePerson(
+                "you",
+                youCount
+            );
+            addLog("You");
+        } else {
+            himCount++;
+            updatePerson(
+                "him",
+                himCount
+            );
+            addLog("Him");
+        }
+        saveLocalData();
+        await saveSharedData();
+    }
+    /* =====================================================
+       ADD LOG
+       ===================================================== */
+    function addLog(person) {
+        const log =
+            document.getElementById(
+                "studyLog"
+            );
+        const empty =
+            log.querySelector(
+                ".empty-log"
+            );
+        if (empty) {
+            empty.remove();
+        }
+        const today =
+            new Date();
+        const date =
+            today.toLocaleDateString(
+                undefined,
+                {
+                    month: "short",
+                    day: "numeric"
+                }
+            );
+        const entry =
+            document.createElement("div");
+        entry.className =
+            "log-entry";
+        entry.innerHTML = `
+            <div>
+                <div class="log-person">
+                    ${person}
+                </div>
+                <div class="log-type">
+                    Study accomplishment
+                </div>
+            </div>
+            <div class="log-type">
+                ${date}
+            </div>
+        `;
+        log.prepend(entry);
+        studyLogs.unshift({
+            person: person,
+            date: date
+        });
+    }
+    /* =====================================================
+       RENDER LOG
+       ===================================================== */
+    function renderLog() {
+        const log =
+            document.getElementById(
+                "studyLog"
+            );
+        log.innerHTML = "";
+        if (!studyLogs.length) {
+            log.innerHTML = `
+                <div class="empty-log">
+                    Nothing logged yet. Go study! 📚
+                </div>
+            `;
+            return;
+        }
+        studyLogs.forEach(function(item) {
+            const entry =
+                document.createElement("div");
+            entry.className =
+                "log-entry";
+            entry.innerHTML = `
+                <div>
+                    <div class="log-person">
+                        ${item.person}
+                    </div>
+                    <div class="log-type">
+                        Study accomplishment
+                    </div>
+                </div>
+                <div class="log-type">
+                    ${item.date}
+                </div>
+            `;
+            log.appendChild(entry);
+        });
+    }
+    /* =====================================================
+       SAVE LOCALLY
+       ===================================================== */
+    function saveLocalData() {
+        const localData = {
+            youCount: youCount,
+            himCount: himCount,
+            streak: streak,
+            history: history,
+            currentWeekStart: currentWeekStart,
+            logs: studyLogs
+        };
+        localStorage.setItem(
+            "studyCornerData",
+            JSON.stringify(localData)
+        );
+    }
+    /* =====================================================
+       LOAD LOCALLY
+       ===================================================== */
+    function loadLocalData() {
+        const saved =
+            localStorage.getItem(
+                "studyCornerData"
+            );
+        if (!saved) {
+            return;
+        }
+        try {
+            const parsed =
+                JSON.parse(saved);
+            youCount =
+                parsed.youCount || 0;
+            himCount =
+                parsed.himCount || 0;
+            streak =
+                parsed.streak || 0;
+            history =
+                parsed.history || [];
+            currentWeekStart =
+                parsed.currentWeekStart || "";
+            studyLogs =
+                parsed.logs || [];
+        } catch (error) {
+            console.error(
+                "Local data error:",
+                error
+            );
+        }
+    }
+    /* =====================================================
+       SAVE TO SUPABASE
+       ===================================================== */
+    async function saveSharedData() {
+        const { data, error } =
+            await supabaseClient
+                .from("study_corner")
+                .upsert(
+                    {
+                        couple_id:
+                            COUPLE_ID,
+                        your_name:
+                            "Chetlynn",
+                        partner_name:
+                            "Ramon",
+                        you_count:
+                            youCount,
+                        partner_count:
+                            himCount,
+                        streak:
+                            streak,
+                        history:
+                            history,
+                        current_week_start:
+                            currentWeekStart,
+                        checkin:
+                            getCheckinData(),
+                        updated_at:
+                            new Date().toISOString()
+                    },
+                    {
+                        onConflict:
+                            "couple_id"
+                    }
+                );
+        if (error) {
+            console.error(
+                "Supabase save error:",
+                error
+            );
+            return false;
+        }
+        console.log(
+            "Shared data saved successfully."
+        );
+        return true;
+    }
+    /* =====================================================
+       LOAD FROM SUPABASE
+       ===================================================== */
+    async function loadSharedData() {
+        const {
+            data: sharedData,
+            error
+        } =
+            await supabaseClient
+                .from("study_corner")
+                .select("*")
+                .eq(
+                    "couple_id",
+                    COUPLE_ID
+                )
+                .maybeSingle();
+        if (error) {
+            console.error(
+                "Supabase load error:",
+                error
+            );
+            return;
+        }
+        if (!sharedData) {
+            console.log(
+                "No shared study space found yet. Creating one..."
+            );
+            if (!currentWeekStart) {
+                currentWeekStart =
+                    getCurrentWeekStart();
+            }
+            await saveSharedData();
+            return;
+        }
+        youCount =
+            sharedData.you_count || 0;
+        himCount =
+            sharedData.partner_count || 0;
+        streak =
+            sharedData.streak || 0;
+        history =
+            sharedData.history || [];
+        currentWeekStart =
+            sharedData.current_week_start ||
+            getCurrentWeekStart();
+        updatePerson(
+            "you",
+            youCount
+        );
+        updatePerson(
+            "him",
+            himCount
+        );
+        updateStreak();
+        renderHistory();
+        saveLocalData();
+        console.log(
+            "Shared study data loaded."
+        );
+    }
+    /* =====================================================
+       START NEW WEEK
+       ===================================================== */
+    async function startNewWeek() {
+        if (
+            youCount === 0 &&
+            himCount === 0
+        ) {
+            alert(
+                "This week is already empty. Start studying first! 📚"
+            );
+            return;
+        }
+        const confirmed =
+            confirm(
+                "Start a new week? This week's progress will be saved to Weekly History."
+            );
+        if (!confirmed) {
+            return;
+        }
+        const completedWeek = {
+            weekStart:
+                currentWeekStart ||
+                getCurrentWeekStart(),
+            youCount:
+                youCount,
+            himCount:
+                himCount
+        };
+        history.unshift(
+            completedWeek
+        );
+        if (
+            youCount >= 2 &&
+            himCount >= 2
+        ) {
+            streak++;
+        } else {
+            streak = 0;
+        }
+        youCount = 0;
+        himCount = 0;
+        currentWeekStart =
+            getCurrentWeekStart();
+        studyLogs = [];
+        updatePerson(
+            "you",
+            youCount
+        );
+        updatePerson(
+            "him",
+            himCount
+        );
+        updateStreak();
+        renderHistory();
+        renderLog();
+        saveLocalData();
+        const saved =
+            await saveSharedData();
+        if (saved) {
+            alert(
+                "New week started! ✦ Your previous week has been saved to history."
+            );
+        } else {
+            alert(
+                "The new week started on this device, but there was a problem syncing it."
+            );
+        }
+    }
+    /* =====================================================
+       CHECK-IN DATA
+       ===================================================== */
+    function getCheckinData() {
+        return {
+            accomplished:
+                document.getElementById(
+                    "accomplished"
+                ).value,
+            proud:
+                document.getElementById(
+                    "proud"
+                ).value,
+            nextWeek:
+                document.getElementById(
+                    "nextWeek"
+                ).value,
+            support:
+                document.getElementById(
+                    "support"
+                ).value,
+            appreciation:
+                document.getElementById(
+                    "appreciation"
+                ).value
+        };
+    }
+    /* =====================================================
+       SAVE CHECK-IN
+       ===================================================== */
+    async function saveCheckin() {
+        const checkin =
+            getCheckinData();
+        localStorage.setItem(
+            "study_checkin",
+            JSON.stringify(checkin)
+        );
+        const { error } =
+            await supabaseClient
+                .from("study_corner")
+                .upsert(
+                    {
+                        couple_id:
+                            COUPLE_ID,
+                        your_name:
+                            "Chetlynn",
+                        partner_name:
+                            "Ramon",
+                        you_count:
+                            youCount,
+                        partner_count:
+                            himCount,
+                        streak:
+                            streak,
+                        history:
+                            history,
+                        current_week_start:
+                            currentWeekStart,
+                        checkin:
+                            checkin,
+                        updated_at:
+                            new Date().toISOString()
+                    },
+                    {
+                        onConflict:
+                            "couple_id"
+                    }
+                );
+        if (error) {
+            console.error(
+                "Check-in save error:",
+                error
+            );
+            alert(
+                "Your check-in was saved on this device, but there was a problem syncing it."
+            );
+            return;
+        }
+        alert(
+            "Your check-in has been saved. ✦"
+        );
+    }
+    /* =====================================================
+       LOAD CHECK-IN
+       ===================================================== */
+    function loadCheckin() {
+        const saved =
+            localStorage.getItem(
+                "study_checkin"
+            );
+        if (!saved) {
+            return;
+        }
+        try {
+            const checkin =
+                JSON.parse(saved);
+            if (checkin.accomplished) {
+                document.getElementById(
+                    "accomplished"
+                ).value =
+                    checkin.accomplished;
+            }
+            if (checkin.proud) {
+                document.getElementById(
+                    "proud"
+                ).value =
+                    checkin.proud;
+            }
+            if (checkin.nextWeek) {
+                document.getElementById(
+                    "nextWeek"
+                ).value =
+                    checkin.nextWeek;
+            }
+            if (checkin.support) {
+                document.getElementById(
+                    "support"
+                ).value =
+                    checkin.support;
+            }
+            if (checkin.appreciation) {
+                document.getElementById(
+                    "appreciation"
+                ).value =
+                    checkin.appreciation;
+            }
+        } catch (error) {
+            console.error(
+                "Check-in loading error:",
+                error
+            );
+        }
+    }
+    /* =====================================================
+       LOAD SHARED CHECK-IN
+       ===================================================== */
+    async function loadSharedCheckin() {
+        const {
+            data: sharedData,
+            error
+        } =
+            await supabaseClient
+                .from("study_corner")
+                .select("checkin")
+                .eq(
+                    "couple_id",
+                    COUPLE_ID
+                )
+                .maybeSingle();
+        if (error) {
+            console.error(
+                "Shared check-in load error:",
+                error
+            );
+            return;
+        }
+        if (
+            sharedData &&
+            sharedData.checkin
+        ) {
+            const checkin =
+                sharedData.checkin;
+            if (checkin.accomplished) {
+                document.getElementById(
+                    "accomplished"
+                ).value =
+                    checkin.accomplished;
+            }
+            if (checkin.proud) {
+                document.getElementById(
+                    "proud"
+                ).value =
+                    checkin.proud;
+            }
+            if (checkin.nextWeek) {
+                document.getElementById(
+                    "nextWeek"
+                ).value =
+                    checkin.nextWeek;
+            }
+            if (checkin.support) {
+                document.getElementById(
+                    "support"
+                ).value =
+                    checkin.support;
+            }
+            if (checkin.appreciation) {
+                document.getElementById(
+                    "appreciation"
+                ).value =
+                    checkin.appreciation;
+            }
+            localStorage.setItem(
+                "study_checkin",
+                JSON.stringify(checkin)
+            );
+        }
+    }
+    /* =====================================================
+       INITIALIZE
+       ===================================================== */
+    async function initializeStudyCorner() {
+        loadLocalData();
+        if (!currentWeekStart) {
+            currentWeekStart =
+                getCurrentWeekStart();
+        }
+        loadCheckin();
+        updatePerson(
+            "you",
+            youCount
+        );
+        updatePerson(
+            "him",
+            himCount
+        );
+        updateStreak();
+        renderLog();
+        renderHistory();
+        await loadSharedData();
+        await loadSharedCheckin();
+        renderLog();
+        renderHistory();
+        updatePerson(
+            "you",
+            youCount
+        );
+        updatePerson(
+            "him",
+            himCount
+        );
+        updateStreak();
+    }
+    window.onload =
+        initializeStudyCorner;
+</script>
+</body>
+</html>
